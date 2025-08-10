@@ -9,17 +9,21 @@ const UserSchema = new Schema(
     {
         name: {
             type: String,
-            requires: true
+            required: true
         },
         email: {
             type: String,
-            requires: true,
+            required: true,
             unique: true
         },
         password: {
             type: String,
-            require: true
-        },
+            required: true
+        },//an array of objectid of deck
+        decks: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Deck'  // <-- this links user to their decks
+        }],
         createdAt: {
             type: Date,
             default: Date.now

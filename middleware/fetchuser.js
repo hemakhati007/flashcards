@@ -16,6 +16,7 @@ const fetchuser = (req, res, next) => {
     try {
         const data = jwt.verify(token, JWT_SECRET);
         req.user = data.user;
+        console.log("yes");
         next();//next() is a function that passes control to the next middleware or route handler in the stack.
     }
     catch (error) {

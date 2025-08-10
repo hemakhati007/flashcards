@@ -11,7 +11,7 @@ const { body, validationResult } = require("express-validator");
 //validationResult is to gather the result of validation and handle any error
 
 const bcrypt = require('bcryptjs');//hashing the password
-const User = require("../models/User");
+const User = require("../Models/User");
 //dealing with user creation and validation(user data)
 //for having seesions
 const jwt = require("jsonwebtoken");

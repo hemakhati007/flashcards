@@ -10,7 +10,7 @@ const port = 5000;
 
 app.use(express.json()); // ✅ important for reading req.body
 app.use("/api/auth", require("./Routes/auth"));
-
+app.use("/api/users",require("./Routes/users"));
 
 
 app.listen(port, () => {

@@ -1,7 +1,12 @@
 //flashcards respective to users
 
 const mongoose = require('mongoose');
-const FlashcardShcema = new mongoose.Schema({
+
+// const User = require("../Models/User");//to get user info
+// const Deck = require("../Models/Deck");//to get Deck info
+
+
+const FlashcardSchema = new mongoose.Schema({
     question: {
         type: String,
         required: true,
@@ -11,15 +16,20 @@ const FlashcardShcema = new mongoose.Schema({
         required: true
     },
     user: {
-        type: mongoose.Schema.type.ObjectId,//its like a foreign key
+        type: mongoose.Schema.Types.ObjectId,//its like a foreign key
         ref: 'User',
         required: true
+    },
+    deck: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Deck',
+        required:true
     },
     isCorrect: {
         type: Boolean,
         default: null//later will be filled after swip left/right 
     },
-    createAt: {
+    createdAt: {
         type: Date,
         default: Date.now
     }
