@@ -12,14 +12,14 @@ const cohere = new CohereClient({
 
 const generateDeck = async(req, res) => {
     
-    const { title, prompt } = req.body;
+    const { title, prompt,count } = req.body;
     const userId = req.user.id;
     try {
       
         // 1. Call Cohere API to generate flashcards
         const cohereResponse = await cohere.chat({
             model: 'command-r',
-            message: `You are a helpful assistant. Please return exactly 5 flashcards as a valid JSON array. Each flashcard should have a "question" and an "answer". The output must be strictly in this format:
+            message: `You are a helpful assistant. Please return exactly "${count}" flashcards as a valid JSON array. Each flashcard should have a "question" and an "answer". The output must be strictly in this format:
 
 [
   {"question": "What is X?", "answer": "X is..."},

@@ -11,7 +11,12 @@ const saveDeck = async (req, res) => {
 
         const { title, flashcards } = req.body;
         const userId = req.user.id;
-
+        
+        const existingDeck = await Deck.findOne({ title, user: userId });
+        if (existingDeck) {
+            return res.status(400).json({ error: 'You already have a deck with this title' });
+        }
+        
         //Create deck
         const deck = await Deck.create({
             title: title,
