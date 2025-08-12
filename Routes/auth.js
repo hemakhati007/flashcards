@@ -44,6 +44,7 @@ router.post(
             let user = await User.findOne({ email: req.body.email });//its apromise
             // let success;
             if (user) {//exist
+                console.log("email laready exist");
                 return res
                     .status(400)
                     .json({ error: "sorry user with  this email exist" });
@@ -74,8 +75,16 @@ router.post(
             };
             const authtoken = jwt.sign(data, JWT_SECRET);
 
+            // Set the token in an HTTP-only cookie
+            res.cookie("token", authtoken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production", // secure only in prod
+                sameSite: "strict",
+                maxAge: 3600000 // 1 hour
+            });
+
             //return suceess response
-            res.status(201).json({ success: true, message: 'User created successfully',authtoken });
+            res.status(201).json({ success: true, message: 'User created successfully' });
         }
         catch (error) {
             console.log(error.message);
@@ -122,7 +131,13 @@ router.post(
             };
 
             const authtoken = jwt.sign(payload, JWT_SECRET);
-            res.status(200).json({ sucess: true, msg: "login", authtoken });
+            res.cookie("token", authtoken, {
+                httpOnly: true,        // Prevent JS from accessing the cookie
+                secure: process.env.NODE_ENV === "production", // HTTPS only in production
+                sameSite: "strict",    // CSRF protection
+                maxAge: 24 * 60 * 60 * 1000 // 1 day in ms
+            });
+            res.status(200).json({ success: true, msg: "login"});
 
         } catch (err) {
 

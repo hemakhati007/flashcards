@@ -7,9 +7,13 @@ const JWT_SECRET = "iamagood$girl";
 
 const fetchuser = (req, res, next) => {
 
-    //GET THE USER FROM JWT TOKEN AND ADD ID  TO req obj
+    // //GET THE USER FROM JWT TOKEN AND ADD ID  TO req obj
 
-    const token = req.header('auth-token')
+    // const token = req.header('auth-token')
+
+
+    // GET TOKEN FROM COOKIE
+    const token = req.cookies?.token; // 'token' is the cookie name you set in backend
     if (!token) {
         res.status(401).send({ error: "please authenticate using a valid token" })
     }
