@@ -19,9 +19,7 @@ const LayOut = () => {
     const Feed=() => {
         return (
             <>
-                <Nav>
-
-                </Nav>
+                <Nav/>
                 <main>
                     <Leftbar/>
                     <div className="container">

@@ -7,7 +7,7 @@
 // import Dashboard from './pages/Dashboard';
 
 
-
+import { AuthProvider } from "./context/AuthContext";
 import LayOut from './pages/LayOut/LayOut';
 import './App.css';
 
@@ -16,7 +16,10 @@ function App() {
   return (
     
     <>
-      <LayOut/>
+      <AuthProvider>
+        <LayOut />
+        </AuthProvider>
+
       </>
   );
 }

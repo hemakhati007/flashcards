@@ -1,0 +1,13 @@
+
+.flashcard-deck {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: .3s ease;
+    }
+    
+.flashcard-deck:hover {
+    transform: scale(1.2);
+}

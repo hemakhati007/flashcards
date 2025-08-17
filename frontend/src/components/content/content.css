@@ -1,0 +1,10 @@
+
+.content{
+    display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 cards per row */
+        gap: 20px;
+        /* spacing between cards */
+        justify-content: center;
+        padding: 20px;
+}

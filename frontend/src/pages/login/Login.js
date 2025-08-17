@@ -1,10 +1,71 @@
 
 import { Link } from 'react-router-dom';
 
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
 import './login.css';
 // import '../'
+
  
 const Login = () => {
+
+
+
+    const [credentials, setcredentials] = useState({
+        email: "", password: ""
+    });
+
+    let navigate = useNavigate();
+
+    const onSubmit = async (e) => {
+        e.preventDefault(); // stop default form action
+        const response = await fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                email: credentials.email,
+                password: credentials.password
+            })
+        });
+        const json = await response.json()
+        console.log(json);
+        if (json.success) {
+            // localStorage.setItem('token', json.authtoken);
+            navigate("/");
+            // showAlert("logged IN");
+            console.log("loggedIN")
+        }
+        else {
+            // showAlert()
+            console.log("failed");
+        }
+    };
+
+
+
+
+    //     If e.target.name is "email", your new state becomes:
+
+    //     js
+    //     Copy
+    //     Edit
+    //     { email: "something" }
+    // 💥 The password field is gone — overwritten.
+
+
+    const onChange = (e) => {
+        setcredentials({ ...credentials, [e.target.name]: e.target.value });
+    };
+
+
+
+
+
     return (
         <div className='login'>
             <div className="card">
@@ -19,9 +80,9 @@ const Login = () => {
                     </Link>
                 </div>
 
-                <form className="right">
-                    <input type="text" required placeholder="username" />
-                    <input type="password" required placeholder="password" />
+                <form className="right" onSubmit={onSubmit} >
+                    <input type="email" required placeholder="email" value={credentials.email} /*we show value that is in react state*/ onChange={onChange}/*change the state values of react by event */ id="Email" name="email" aria-describedby="emailHelp" />
+                    <input type="password" required placeholder="password" id="Password" name="password" value={credentials.password} onChange={onChange} />
                     <button type="submit" className='btn'>Login</button>
 
                 </form>

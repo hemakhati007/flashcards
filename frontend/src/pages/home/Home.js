@@ -1,9 +1,12 @@
 
 
+import Content from '../../components/content/Content'
+
 const Home = () => {
     return (
         <>
-            home
+            <Content />
+           
         </>
     )
 }

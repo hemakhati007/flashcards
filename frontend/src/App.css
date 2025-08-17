@@ -7,6 +7,9 @@
   text-align:none;
   list-style:none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  outline:none;
+  border:none;
 }
 
 :root{
@@ -17,13 +20,36 @@
   --color-soft:#aaaaaa;
   --color-border:lightgrey;
   --color-red:red;
+
+
+  --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding: 1rem;
+
+
+}
+
+.darkmood{
+  --text-color: white;
+    --color-bg: black;
+    --color-card:#111111;
+    --color-soft: #aaaaaa;
 }
 
 /* classSelctor */
+body {
+  background: var(--color-bg);
+  color: var(--color-soft);
+  overflow: hidden;
+
+}
 
 .container{
   max-width:991px;
   width:100%;
+  height:100%;
   margin:0 auto;
 }
 
@@ -40,12 +66,13 @@ img{
 
 .user{
   display:flex;
+  flex-direction: column;
   align-items:center;
   gap:10px;
 }
 
 .user img{
-  width:33px;
+  width:70px;
   aspect-ratio:1/1;
   border-radius:50% ;
 }
@@ -54,10 +81,7 @@ img{
   color:var(--color-primary);
 }
 
-body{
-  background:var(--color-bg);
-  color:var(--color-soft);
-}
+
 
 small,p{
   color:var(--color-soft);
@@ -85,5 +109,21 @@ small,p{
 
 .btn-red{
   background:var(--color-red);
-  color:white;
+  color:rgb(224, 12, 12);
+}
+
+
+main{
+  background-color:var(--color-bg );
+  display:grid;
+ /* justify-content: space-around; */
+  grid-template-columns: 20% 80%;
+  gap:3%;
+  width: 100%; 
+  height:100vh;
+}
+
+.nav-home{
+  width:20px;
+  height:20px;
 }
