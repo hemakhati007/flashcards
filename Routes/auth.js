@@ -79,12 +79,12 @@ router.post(
             res.cookie("token", authtoken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production", // secure only in prod
-                sameSite: "strict",
+                sameSite: "lax",
                 maxAge: 3600000 // 1 hour
             });
 
             //return suceess response
-            res.status(201).json({ success: true, message: 'User created successfully' });
+            res.status(200).json({ success: true, message: 'User created successfully' });
         }
         catch (error) {
             console.log(error.message);

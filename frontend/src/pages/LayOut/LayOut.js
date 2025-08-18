@@ -8,10 +8,12 @@ import Login from '../login/Login';
 import Signup from '../signup/Signup';
 import Home from '../home/Home';
 import Profile from '../profile/Profile';
+import DeckViewer from "../Deck/Deckviewer";
 
 //components....
 import Nav from "../../components/navbar/Nav";
 import Leftbar from "../../components/leftbar/Leftbar";
+
 
 
 const LayOut = () => {
@@ -47,7 +49,8 @@ const LayOut = () => {
                         <Route path='/' element={<Home />}></Route>
                         <Route path='/profile/:id' element={<Profile />}></Route>
                     </Route>
-                   
+                    {/* Deck viewer (no layout, full page) */}
+                    <Route path='/deck/:deckId' element={<DeckViewer />} />
 
                 </Routes>
             </Router>

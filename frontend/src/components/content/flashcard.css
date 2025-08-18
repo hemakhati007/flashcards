@@ -1,8 +1,12 @@
 
-.flashcard-deck {
-    background: #fff;
+
+
+/* .flashcard-deck {
+    width:15rem;
+    height:15rem;
+    background: var(--color-card);
     border-radius: 12px;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: .3s ease;
@@ -10,4 +14,35 @@
     
 .flashcard-deck:hover {
     transform: scale(1.2);
+}
+
+
+@media (max-width:991px) {
+
+   .flashcard-deck{
+          width: 15rem;
+          height:15rem;
+   }
+
+} */
+
+
+.deck-card {
+    border:solid 5px;
+    background:var(--color-card) ;
+    padding:var(--card-padding);
+    width: 18rem;
+    height:20rem;
+}
+
+@media(max-width:991){
+    .deck-card{
+        width:30rem;
+    }
+}
+ .flashcard-deck{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    align-content:center;
 }

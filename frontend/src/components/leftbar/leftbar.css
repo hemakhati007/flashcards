@@ -3,10 +3,10 @@
  .leftbar{
 
     position:sticky;
-    top:3.6rem;
+    left:0;
     background:var(--color-card);
-    height:calc(100vh-3.6rem);
-    overflow: auto;
+    /* overflow-y: auto;allow scrolling inside sidebar */
+   
  }
 
  .leftbar::-webkit-scrollbar{
@@ -16,10 +16,13 @@
  .left-container{
     width:80%;
     margin:0 auto;
+   border: solid;
+   border-radius: 10px;
+      
  }
 
  .left-container .user{
-     
+   
     margin-top: 20px;
 
  }

@@ -9,20 +9,25 @@ import { useNavigate } from "react-router-dom";
 
 const Leftbar = () => {
 
-    
-    const { user } = useContext(AuthContext);
+     
+    const { user,loading } = useContext(AuthContext);
     const navigate = useNavigate();
     useEffect(() => {
-        if (user === null) {
-            navigate("/login");
+        if (!loading) {   // wait until context finished fetching
+            if (user === null) {
+                console.log('declined ');
+                navigate("/login");
+            }
         }
-    }, [user, navigate]);
+       
+    }, [user, navigate, loading]);
+    if (loading) return <p>Loading...</p>;
     
 
 
   
     return (
-        <>
+        
             <div className='leftbar'>
                 <div className="left-container">
                     <div className="menu">       
@@ -41,7 +46,7 @@ const Leftbar = () => {
                     <hr />
                     <div className='content-list'>
 
-                        <h5>Your Flashcards</h5>
+                        <h5 >Your Flashcards</h5>
                         <hr />
                       
                         {/* js */}
@@ -62,7 +67,7 @@ const Leftbar = () => {
                 </div>
                 
            </div>
-        </>
+        
     )
 }
 export default Leftbar;
