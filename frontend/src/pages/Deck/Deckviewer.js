@@ -105,7 +105,12 @@ const DeckViewer = () => {
 
     return (
         <div className="cards-container">
-
+           
+            {flashcards && flashcards.length > 0 ? (
+                <h3>flashcards.title</h3>) : (
+               <h3> </h3>
+            ) }
+            
             <div className="swiper">
                 <div className="swiper-wrapper"> 
                       

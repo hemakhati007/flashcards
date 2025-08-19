@@ -13,7 +13,7 @@ import DeckViewer from "../Deck/Deckviewer";
 //components....
 import Nav from "../../components/navbar/Nav";
 import Leftbar from "../../components/leftbar/Leftbar";
-
+import GenerateDeck from "../../components/generateDeck/GenerateDeck";
 
 
 const LayOut = () => {
@@ -48,6 +48,8 @@ const LayOut = () => {
                     <Route element={<Feed />}>
                         <Route path='/' element={<Home />}></Route>
                         <Route path='/profile/:id' element={<Profile />}></Route>
+                        <Route path='/generateDeck' element={<GenerateDeck />}></Route>
+
                     </Route>
                     {/* Deck viewer (no layout, full page) */}
                     <Route path='/deck/:deckId' element={<DeckViewer />} />

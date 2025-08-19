@@ -48,19 +48,31 @@ main {
   grid-template-columns: 20% 80%;
   gap: 3%;
   width: 100vw;
-  max-height: calc(100vh - 3.8rem);
+  /* min-height: calc(100vh - 3.8rem);  ....... */
+  height: calc(100vh - 3.7rem);
 }
 
 @media(max-width:990px){
   main{
 
     display:block;
+    height: calc(100vh - 3.7rem);
+    /* min-height: calc(100vh - 3.8rem); */
     /* overflow-y: auto; */
   }
  .container {
-   max-height: calc(100vh - 3.6rem);
+   /* max-height: calc(100vh - 3.6rem); */
+    height: 100%;
+      /* take full height of main */
+    
    overflow-y: auto;
  }
+}
+
+@media (min-width: 1400px) {
+  main .container {
+  max-width: 80%;
+  }
 }
 
 

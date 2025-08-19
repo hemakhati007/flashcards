@@ -5,7 +5,7 @@
     position:sticky;
     left:0;
     background:var(--color-card);
-    /* overflow-y: auto;allow scrolling inside sidebar */
+    overflow-y: auto;/*allow scrolling inside sidebar*/
    
  }
 
