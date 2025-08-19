@@ -48,30 +48,33 @@ main {
   grid-template-columns: 20% 80%;
   gap: 3%;
   width: 100vw;
-  max-height: calc(100vh - 3.6rem);
-  overflow-y: auto;/*for nav*/
-    /* scroll happens here */
+  max-height: calc(100vh - 3.8rem);
 }
 
 @media(max-width:990px){
   main{
+
     display:block;
+    /* overflow-y: auto; */
   }
+ .container {
+   max-height: calc(100vh - 3.6rem);
+   overflow-y: auto;
+ }
 }
 
 
 body {
   background: var(--color-bg);
   color: var(--color-soft);
+  height: 100%;
+  overflow: hidden;
+    /* prevent whole-page scroll */
 
 }
 
 
 .container{
- /* width:97%; */
-  /* border: solid;
-  border-radius: 10px; */
-  /* max-height: calc(100vh - 3.9rem); */
   overflow-y:auto;/*scrollable*/
 }
 

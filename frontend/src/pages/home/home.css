@@ -1,23 +1,22 @@
 
+
+
 .home-container{
     border: solid;
     border-radius: 10px;
     width: 96%;
-   /* overflow-y: auto;  inherit from .container */
+   /* overflow-y: auto;  */
+    /*inherit from .container*/
 }
 
 .heading{
   height: 4.5rem;
-/* width:80%; */
 border: solid;
 border-radius: 10px;
  background-color:var(--color-card);
  text-align: center;
  margin-bottom:20px; 
  position:sticky;
- top:0;/*relative to nearest scrollable that is  content*/ 
-/* position:fixed; makes elemnt out of flow of html elment    */
-/* top:57px;
- z-index: 10;
- border:solid; */
+ top:0;/*relative to nearest scrollable ancestor */ 
+
 }

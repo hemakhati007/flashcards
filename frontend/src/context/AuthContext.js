@@ -9,11 +9,12 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
+     
+    console.log("entered");
     
     // const navigate = useNavigate();
 
-    useEffect(() => {
+   
         const fetchProfile = async () => {
 
             try {
@@ -36,6 +37,7 @@ export const AuthProvider = ({ children }) => {
                     return;
                 }
                 const data = await response.json();
+                console.log("RAW PROFILE RESPONSE:", data, "Status:", response.status);
 
                 // Now check if the JSON has an _id (your user object)
                 if (!data || !data._id) {
@@ -56,11 +58,14 @@ export const AuthProvider = ({ children }) => {
                 setLoading(false);
             }
         };
-        fetchProfile();
+        // ✅ call it on mount
+        useEffect(() => {
+            console.log("AuthProvider mounted, fetching profile...");
+            fetchProfile();
     }, []);
     
     return (
-        <AuthContext.Provider value={{ user, setUser,loading }}>
+        <AuthContext.Provider value={{ user, setUser, loading, fetchProfile }}>
             {children}
         </AuthContext.Provider>
     )

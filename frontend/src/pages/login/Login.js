@@ -1,9 +1,9 @@
 
 import { Link } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { AuthContext } from "../../context/AuthContext";
 
 import './login.css';
 // import '../'
@@ -11,7 +11,7 @@ import './login.css';
  
 const Login = () => {
 
-
+    const { fetchProfile } = useContext(AuthContext);
 
     const [credentials, setcredentials] = useState({
         email: "", password: ""
@@ -36,6 +36,11 @@ const Login = () => {
         console.log(json);
         if (json.success) {
             // localStorage.setItem('token', json.authtoken);
+             
+
+            //on navigating to home leftbar isnt able to get the user data bcz its getting it from authcontext which mount oce on page load only
+            //so we arent getting loggined without refresh bcz we have page loaded already
+            await fetchProfile();
             navigate("/");
             // showAlert("logged IN");
             console.log("loggedIN")

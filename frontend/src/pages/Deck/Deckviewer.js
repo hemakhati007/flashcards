@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import './deckviewer.css';
+import { Mousewheel } from "swiper/modules";
 
 const DeckViewer = () => {
    
@@ -63,6 +64,43 @@ const DeckViewer = () => {
 
     }, [deckId])
 
+
+    // Initialize Swiper after the component mounts
+    useEffect(() => {
+        if (window.Swiper && flashcards.length > 0) {
+           new window.Swiper(".swiper", {
+                effect: "cards",
+                loop: false,
+                grabCursor: true,
+                initialSlide: 0,
+                mousewheel: {
+                    invert:false,
+                },
+                // slidesPerView: 1,
+               // centeredSlides: true,
+                
+                
+                // Navigation buttons
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+
+                // // Keyboard control
+                keyboard: {
+                    enabled: true,
+                    onlyInViewport: true,
+                },
+
+            
+                
+            });
+
+            // return () => swiper.destroy(); // cleanup when component unmounts
+        }
+    }, [flashcards]);
+
+    if (loading) return <p>Loading...</p>;
      
 
     return (
@@ -83,7 +121,12 @@ const DeckViewer = () => {
                     )}
 
                 </div>
+                {/* Navigation buttons */}
+                <div className="swiper-button-prev"></div>
+                <div className="swiper-button-next"></div>
             </div>
+
+            
             
         </div>
     )
