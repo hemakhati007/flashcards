@@ -17,7 +17,7 @@ const getDeck = async (req, res) => {
         if (deck.user.toString() !== req.user.id) {
             return res.status(403).json({ error: 'Access denied' });
         }
-        res.json({success:true,flashcards: deck.flashcards});
+        res.json({success:true,flashcards: deck.flashcards,title:deck.title});
         // res.json({ success: true });
     }
     catch (err) {

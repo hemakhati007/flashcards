@@ -43,11 +43,12 @@ const Leftbar = () => {
                                 <p>Loading...</p>
                         )}
                     </div>
-                    <hr />
+           
+                <div style={{ 'background':'white','marginTop':'10px'} }><h5 className="Heading">Your Flashcards</h5></div> 
                     <div className='content-list'>
 
-                        <h5 >Your Flashcards</h5>
-                        <hr />
+                        
+                     
                       
                         {/* js */}
                         {user?.decks && user.decks.length > 0 ? (

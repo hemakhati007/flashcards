@@ -4,7 +4,7 @@
 
     position:sticky;
     left:0;
-    background:var(--color-card);
+    margin:5px;
     overflow-y: auto;/*allow scrolling inside sidebar*/
    
  }
@@ -16,14 +16,32 @@
  .left-container{
     width:80%;
     margin:0 auto;
-   border: solid;
+    padding: 15px;
+   /* border: solid; */
    border-radius: 10px;
       
  }
 
+ .leftbar .menu{
+   
+   background: #ccddea;
+   border-radius: 10px;
+ }
+ 
+ .leftbar .content-list{ 
+    background: #ccddea;
+   border-radius: 10px;
+   padding-top: 0px;
+   padding: 10px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   
+ }
+
+
  .left-container .user{
    
-    margin-top: 20px;
+    margin: 0px;
+    padding:10px;
 
  }
  
@@ -35,14 +53,18 @@
  }
 
 hr{
-    background: var(--color-border);
+    background: var(--text-color1);
     /* border:none; */
     height:.4px;
     margin-bottom:5px;
 }
-.left-container  a {
-   color: var(--color-primary);
-
+.left-container a{
+   color: var(--text-color2);
+}
+.left-container .Heading{
+   color: var(--text-color2);
+  
+   background: var(--color-bg);
 }
 
 /* start media scrin.......*/

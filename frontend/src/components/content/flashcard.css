@@ -27,13 +27,7 @@
 } */
 
 
-.deck-card {
-    border:solid 5px;
-    background:var(--color-card) ;
-    padding:var(--card-padding);
-    width: 18rem;
-    height:20rem;
-}
+
 
 @media(max-width:991){
     .deck-card{
@@ -41,8 +35,25 @@
     }
 }
  .flashcard-deck{
+   
     display:flex;
     flex-direction: column;
     align-items:center;
     align-content:center;
+
+}
+
+.deck-container .title h3>*:nth-child(3n + 1) {
+    color: #e37425 !important;
+    font-weight: 700;
+}
+
+.deck-container .title h3>*:nth-child(3n + 2) {
+    color: #1b6328 !important;
+    font-weight: 700;
+}
+
+.deck-container .title h3>*:nth-child(3n + 3) {
+    color: #221b63 !important;
+    font-weight: 700;
 }

@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* for all */
 *{
   margin:0;
@@ -6,19 +8,23 @@
   box-sizing:boarder-box;
   text-align:none;
   list-style:none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Comfortaa", cursive;
   text-decoration: none;
   outline:none;
   border:none;
 }
 
 :root{
-  --color-primary:#6c63ff;
-  --text-color:black;
-  --color-bg:rgb(236,236,236);
-  --color-card:white;
+  --color-primary:#76B9E2;
+  --text-color1:#A04343;
+  --text-color2: #157db5;
+  --color-bg: #ffffff;
+  --color-bg1:#D77575;
+  --color-bg2: #590000;
+  --color-card:#425fa1;
   --color-soft:#aaaaaa;
-  --color-border:lightgrey;
+  --color-border:#ffffff;
+  --color-border1: #A04343;
   --color-red:red;
 
 
@@ -50,24 +56,11 @@ main {
   width: 100vw;
   /* min-height: calc(100vh - 3.8rem);  ....... */
   height: calc(100vh - 3.7rem);
+  background: var(--color-bg);
+
 }
 
-@media(max-width:990px){
-  main{
 
-    display:block;
-    height: calc(100vh - 3.7rem);
-    /* min-height: calc(100vh - 3.8rem); */
-    /* overflow-y: auto; */
-  }
- .container {
-   /* max-height: calc(100vh - 3.6rem); */
-    height: 100%;
-      /* take full height of main */
-    
-   overflow-y: auto;
- }
-}
 
 @media (min-width: 1400px) {
   main .container {
@@ -77,6 +70,7 @@ main {
 
 
 body {
+  /* border-radius: 5px; */
   background: var(--color-bg);
   color: var(--color-soft);
   height: 100%;
@@ -88,35 +82,63 @@ body {
 
 .container{
   overflow-y:auto;/*scrollable*/
+    margin: 10px;
 }
 
 
-h1,h2,h3,h4,h5{
-  font-weight: 600;
-  color: (--text-color);
-}
-
+ /* h1,h2,h3,h4,h5{
+  color: (--text-color2);
+} */
+ /* img .user-profile {
+   width: 250px !important;
+   aspect-ratio: 1 / 1;
+   border-radius: 50%;
+ } */
+ 
 img{
   width:100%;
   display:block;
   object-fit:cover;
 }
 
+
+
 .user{
-  display:flex;
+  /* display:flex;
   flex-direction: column;
   align-items:center;
-  gap:10px;
+  gap:10px; */
+
+    display: flex;
+      flex-direction: column;
+      /* stack image + name + email */
+      align-items: center;
+      /* center inside */
+      gap: 0.5rem;
+      padding: 1rem;
+      background: #ccddea;;
+      /* card look */
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+
 }
 
-.user img{
-  width:70px;
-  aspect-ratio:1/1;
-  border-radius:50% ;
+ .user img{
+
+  width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    /* circular */
+    object-fit: cover;
+    /* crop nicely */
+    border: 3px solid #007bff;
+    /* optional blue ring */
+
 }
 
-.user h4{
-  color:var(--color-primary);
+.user h6{
+  color: var(--text-color2);
 }
 
 
@@ -125,30 +147,7 @@ small,p{
   color:var(--color-soft);
 }
 
-.btn{
-   padding:.6rem 1.6rem;
-   display:inline-block;
-   width:fit-content;
-   cursor:pointer;
-   border-radius: .5rem;
-   border:none;
-   font-size: .9rem;
-   font-weight:500;
-   transition: .3s ease;
-}
 
-.btn:hover{
-  opacity: .7;
-}
-.btn-primary{
-  background:var(--color-primary);
-  color:white;
-}
-
-.btn-red{
-  background:var(--color-red);
-  color:rgb(224, 12, 12);
-}
 
 .nav-home{
   width:20px;
@@ -157,19 +156,54 @@ small,p{
 
 
 .deck-card{
-        border: solid 5px;
-        background: var(--color-card);
+        background: var(--color-bg2);
+        border-radius: 15px;
         padding: var(--card-padding);
-        width: 20rem;
-        height: 25rem;
+        width: 18rem;
+        height: 27rem;
         display: grid;
         grid-template-rows: 80% 20%;
         justify-items: center; /* vertical centering */
         align-items: center;
+
+          /* box-shadow: 0 60px 18px rgba(12, 11, 11, 0.391); */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            /* smooth transitions */
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         
+}
+/* hover effect */
+.deck-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 /* @media(max-width:991px) {
   .deck-card {
     width: 20rem;
   }
 } */
+
+
+@media(max-width:990px) {
+  main {
+
+    display: block;
+    height: calc(100vh - 3.7rem);
+    /* min-height: calc(100vh - 3.8rem); */
+    /* overflow-y: auto; */
+  }
+
+  .container {
+    /* max-height: calc(100vh - 3.6rem); */
+    height: 100%;
+    /* take full height of main */
+    overflow-y: auto;
+  }
+
+  .deck-card{
+      width: 18rem;
+      height: 27rem;
+
+  }
+}

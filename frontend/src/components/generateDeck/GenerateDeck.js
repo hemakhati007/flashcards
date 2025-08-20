@@ -130,7 +130,7 @@ const GenerateDeck = () => {
     return (
         <div className='generate-container' /*onSubmit={onSubmit}*/>
             
-            {generatedCards.length === 0 && (<h3>Generate Your Deck Of Card</h3>)}
+            {generatedCards.length === 0 && (<h3 className='heading'>Generate Your Deck Of Card</h3>)}
             {/* {generatedCards.length > 0 && (<h3>preview of deck of card</h3>)} */}
 
             {/* Show form only if no cards have been generated yet */}
@@ -146,7 +146,7 @@ const GenerateDeck = () => {
                     value={description.prompt} onChange={onChange} 
                 />
                 <input type="number" min={1} required placeholder="count" id="count" name="count" value={description.count} onChange={onChange}  />
-                    <button type="submit" className='btn btn-primary'>
+                    <button type="submit" className='btn'>
                         {loading ? "Generating..." : "Generate"}
                     </button>
             </form>
@@ -155,7 +155,7 @@ const GenerateDeck = () => {
             {/* Preview section */}
             {generatedCards && generatedCards.length > 0 && (
                 <div className="deck-preview">
-                    <h4>Preview Of Your Deck</h4>
+                    <h4 className='heading'>Preview Of Your Deck</h4>
                     <div className="swiper">
                         <div className="swiper-wrapper"> 
                     {generatedCards.map((card, index) => (

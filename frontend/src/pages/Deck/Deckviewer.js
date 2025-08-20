@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import './deckviewer.css';
-import { Mousewheel } from "swiper/modules";
+
 
 const DeckViewer = () => {
    
-    const { deckId, title } = useParams();  
-    console.log(title);
+    const { deckId } = useParams();  
+    // console.log(title);
     
     const [flashcards, setflashcards] = useState([]);
+    const [title, setTitle] = useState(null);
 
     const [loading, setLoading] = useState(true);
 
-    const [progress, setProgress] = useState({ correct: 0, wrong: 0 });
+   
 
 
     useEffect(() => {
@@ -36,6 +37,7 @@ const DeckViewer = () => {
                 if (!response.ok) {
                     console.log("Authentication failed");
                     setflashcards([]);   // just clear user
+                    setTitle(null);
                     return;
                 }
                 const data = await response.json();
@@ -44,10 +46,12 @@ const DeckViewer = () => {
                 if (!data || !data.success) {
                     console.warn("cant find the deck:", data);
                     setflashcards([]);
+                    setTitle(null);
                     return;
                 }
                 console.log(data);
                 setflashcards(data.flashcards);
+                setTitle(data.title);
                 
 
             }
@@ -68,14 +72,12 @@ const DeckViewer = () => {
     // Initialize Swiper after the component mounts
     useEffect(() => {
         if (window.Swiper && flashcards.length > 0) {
-           new window.Swiper(".swiper", {
+          new window.Swiper(".swiper", {
                 effect: "cards",
                 loop: false,
                 grabCursor: true,
                 initialSlide: 0,
-                mousewheel: {
-                    invert:false,
-                },
+              
                 // slidesPerView: 1,
                // centeredSlides: true,
                 
@@ -94,8 +96,10 @@ const DeckViewer = () => {
 
             
                 
-            });
-
+           });
+            
+           
+           
             // return () => swiper.destroy(); // cleanup when component unmounts
         }
     }, [flashcards]);
@@ -107,7 +111,7 @@ const DeckViewer = () => {
         <div className="cards-container">
            
             {flashcards && flashcards.length > 0 ? (
-                <h3>flashcards.title</h3>) : (
+                <h3 className="heading">{title}</h3>) : (
                <h3> </h3>
             ) }
             

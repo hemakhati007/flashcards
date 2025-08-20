@@ -1,0 +1,11 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    /* center horizontally */
+    align-items: center;
+    /* center vertically */
+    min-height: 200px;
+    /* give some space */
+}
+
+/*  */

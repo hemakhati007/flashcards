@@ -19,8 +19,8 @@ const Deck = ({ id, title ,onDelete}) => {
             <div className='deck-card'>
 
                 <Link to={`/deck/${id}`}>
-                    <div className="content">
-                        <h3>{title}</h3>
+                    <div >
+                    <h3 className="title">{title}</h3>
                     </div>
                 </Link>
                 <button className='btn btn-primary' onClick={()=>onDelete(id)} style={{'width':'7rem'}}>

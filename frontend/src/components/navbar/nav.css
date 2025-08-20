@@ -5,10 +5,12 @@ nav{
     align-items:center;
     justify-content: center;
     border-bottom: 1px solid var(--color-border);
-    color:var(--color-primary);
+    /* border-top-left-radius: 2px;
+    border-top-right-radius: 2px; */
+
     position:sticky;
     z-index:10;
-    background:var(--color-card);
+    background:var(--color-bg);
     top:0;
 }
 
@@ -24,16 +26,19 @@ nav{
     align-items:center;
     justify-content: space-between;
 }
-.nav-container a {
+.nav-container a{
+    text-decoration: none;
+    color: var(--text-color2);
+}
+.nav-container .logo {
+   font-weight: bolder; 
    
-    color:var(--color-primary);
-    font-size: 1.1rem;
 }
 
 .nav-left{
     display: flex;
     align-items:center;
-    gap:10px;
+    gap:5px;
 }
 .nav-right {
     display: flex;
@@ -41,7 +46,7 @@ nav{
     gap: 10px;
 }
  .nav-right svg {
-    color: var(--color-primary);
+    color: var(--text-color2);
  }
 
 

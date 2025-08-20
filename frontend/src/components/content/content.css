@@ -7,6 +7,7 @@
     justify-items: center;
     gap: 20px;/* spacing between cards */
     width: 100%;
+    padding:20px;
     margin-top: 20px;
 }
 
@@ -15,4 +16,37 @@
         grid-template-columns: repeat(1, 1fr);
         /* 1 per row on smaller screens */
     }
+}
+
+.decks-container>*:nth-child(1) {
+    background-color: #3ce0b7;
+    color: #1b6328;
+    /* light red */
+}
+
+.decks-container>*:nth-child(2) {
+    background-color: #edae48;
+    /* light blue */
+}
+
+.decks-container>*:nth-child(3) {
+    background-color: #ef6e95;
+    /* light green */
+}
+
+/* repeat pattern every 3 decks */
+.decks-container>*:nth-child(3n + 1) {
+    background-color: #ffda63;
+  
+    /* yellow */
+}
+
+.decks-container>*:nth-child(3n + 2) {
+    background-color: #70cdfc;
+    /* gray */
+}
+
+.decks-container>*:nth-child(3n + 3) {
+    background-color: #f46f6f;
+    /* blue */
 }
