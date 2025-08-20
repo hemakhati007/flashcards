@@ -3,11 +3,16 @@ connectToMongo();//connection to db formed
 
 const express = require('express');
 const cors = require("cors");
+// a middleware for handling file uploads in Node.js.
+
 
 const app = express();
 const port = 5000;
 // var cors=require('cors')
 //url name api/auth hit
+
+
+app.use("/uploads", express.static("uploads"));
 
 app.use(cors({
     origin: "http://localhost:3000",

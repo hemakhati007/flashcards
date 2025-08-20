@@ -24,6 +24,10 @@ const UserSchema = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Deck'  // <-- this links user to their decks
         }],
+        image: {
+            type: String,
+            default: "/uploads/default.png" // 👈 fallback if no image uploaded
+        },
         createdAt: {
             type: Date,
             default: Date.now

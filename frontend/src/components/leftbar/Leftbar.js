@@ -4,7 +4,7 @@ import  { useContext,useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from 'react-router-dom';
 import './leftbar.css'
-import userProfile from "../../assets/images/userProfile.jpeg";
+// import userProfile from "../../assets/images/userProfile.jpeg";
 import { useNavigate } from "react-router-dom";
 
 const Leftbar = () => {
@@ -34,7 +34,7 @@ const Leftbar = () => {
                         {user? (
                          <Link to={`/profile/${user._id}`}>
                             <div className="user">
-                                <img src={userProfile} alt="userProfile" />
+                                <img src={`http://localhost:5000${user.image || "/uploads/default.png"}`} alt="userProfile" />
                                 <h6>{user.name}</h6>
                                 <h6>{user.email}</h6>
                             </div>
@@ -71,4 +71,4 @@ const Leftbar = () => {
         
     )
 }
-export default Leftbar;
+export default Leftbar; 
