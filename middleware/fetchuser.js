@@ -15,17 +15,18 @@ const fetchuser = (req, res, next) => {
     // GET TOKEN FROM COOKIE
     const token = req.cookies?.token; // 'token' is the cookie name you set in backend
     if (!token) {
-        res.status(401).send({ error: "please authenticate using a valid token" })
+        console.log('token error');
+        return res.status(401).send({ error: "please authenticate using a valid token" })
     }
     try {
         const data = jwt.verify(token, JWT_SECRET);
         req.user = data.user;
-        console.log("yes");
+        console.log("yessssssssssssss");
         next();//next() is a function that passes control to the next middleware or route handler in the stack.
     }
     catch (error) {
 
-        res.status(401).send({ error: "please authenticate using a valid token" })
+       return  res.status(401).send({ error: "please authenticate using a valid token" })
 
     }
    

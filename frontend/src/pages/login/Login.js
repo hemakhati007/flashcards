@@ -26,12 +26,14 @@ const Login = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials: "include",
+            // credentials: "include",
             body: JSON.stringify({
                 email: credentials.email,
                 password: credentials.password
-            })
+            }),
+            credentials: "include"
         });
+        console.log("Submitting:",credentials);
         const json = await response.json()
         console.log(json);
         if (json.success) {
@@ -46,8 +48,8 @@ const Login = () => {
             console.log("loggedIN")
         }
         else {
-            // showAlert()
-            console.log("failed");
+            alert("failed to login");
+            console.log("failed to login",json);
         }
     };
 
@@ -89,8 +91,11 @@ const Login = () => {
                     <input type="email" required placeholder="email" value={credentials.email} /*we show value that is in react state*/ onChange={onChange}/*change the state values of react by event */ id="Email" name="email" aria-describedby="emailHelp" />
                     <input type="password" required placeholder="password" id="Password" name="password" value={credentials.password} onChange={onChange} />
                     <button type="submit" className='btn'>Login</button>
-
+                    <Link to="/forgot-password" style={{ color: 'grey', fontSize: '0.8rem', textDecoration: 'underline' }}>
+                        forget password?
+                    </Link>
                 </form>
+               
 
 
             </div>            

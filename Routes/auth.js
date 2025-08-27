@@ -4,6 +4,11 @@
 //3.logined user
 
 
+const { validateEmailDomain, sendNotificationEmail } = require("../utils/emailService.js");
+const { requestPasswordReset } = require('../controllers/passController')
+
+
+
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
@@ -51,6 +56,13 @@ router.post(
             }
             //do not exits
 
+
+            // 2️⃣ Validate email domain (MX lookup)
+            const isValidDomain = await validateEmailDomain(req.body.email);
+            if (!isValidDomain) {
+                return res.status(400).json({ error: "Invalid email domain" });
+            }
+
             //hash the password
             const salt = await bcrypt.genSalt(10);//salt of 10 len
             secPass = await bcrypt.hash(req.body.password, salt); //returns promise
@@ -64,7 +76,7 @@ router.post(
                 password: secPass,
                 email: req.body.email,
             });
-
+ 
             //creating JWT session token so by token server can authenticate user without putting credential
             //the token will be in client req authorization header,onn req to the page ut will get varaifiedd server and givve the user data 
             //so we will send back the toekn to client so it can store it and on next req it do not need to renetr credentials
@@ -78,10 +90,20 @@ router.post(
             // Set the token in an HTTP-only cookie
             res.cookie("token", authtoken, {
                 httpOnly: true,
+                secure: true,
                 secure: process.env.NODE_ENV === "production", // secure only in prod
-                sameSite: "lax",
+                // sameSite: "none",
+                sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
                 maxAge: 3600000 // 1 hour
             });
+
+
+            // 7️⃣ Send notification email (welcome email)
+            await sendNotificationEmail(
+                user.email,
+                "Welcome to Flashcards App 🎉",
+                `Hi ${user.name},\n\nThanks for registering with us!`
+            );
 
             //return suceess response
             res.status(200).json({ success: true, message: 'User created successfully' });
@@ -109,7 +131,7 @@ router.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-
+        console.log("Backend received:", req.body);
 
         //varification email and password
         const { email, password } = req.body;
@@ -119,8 +141,9 @@ router.post(
                 return res.status(400).json({ errors: "please try login with correct credentials" });
             }
 
-            const passwordCompare = bcrypt.compare(password, user.password);
+            const passwordCompare = await bcrypt.compare(password, user.password);
             if (!passwordCompare) {
+                console.log('login with correct credemntianls');
                 return res.status(400).json({ success, error: "please try to login with correct credentials" });
             }
             //for seesion creation
@@ -132,11 +155,13 @@ router.post(
 
             const authtoken = jwt.sign(payload, JWT_SECRET);
             res.cookie("token", authtoken, {
-                httpOnly: true,        // Prevent JS from accessing the cookie
-                secure: process.env.NODE_ENV === "production", // HTTPS only in production
-                sameSite: "strict",    // CSRF protection
-                maxAge: 24 * 60 * 60 * 1000 // 1 day in ms
+                httpOnly: true,
+                // secure: true,
+                secure: process.env.NODE_ENV === "production", // secure only in prod
+                sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+                maxAge: 3600000 // 1 hour
             });
+          
             res.status(200).json({ success: true, msg: "login"});
 
         } catch (err) {
@@ -171,7 +196,12 @@ router.post(
     
 );
 
+router.post("/forget-password", requestPasswordReset);
+
+const { resetPassword }=require('../controllers/resetPass.js')
+router.post("/reset-password", resetPassword);
 
 // Using POST is okay here since you're not passing any data in the body and want to keep it protected behind middleware.
 module.exports = router;
 
+   

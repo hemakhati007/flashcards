@@ -14,8 +14,8 @@ import DeckViewer from "../Deck/Deckviewer";
 import Nav from "../../components/navbar/Nav";
 import Leftbar from "../../components/leftbar/Leftbar";
 import GenerateDeck from "../../components/generateDeck/GenerateDeck";
-
-
+import ForgetPassword from"../../components/Forgetpass/ForgetPassword";
+import ResetPassword from '../../components/Resetpassword/ResetPass';
 const LayOut = () => {
 
     const Feed=() => {
@@ -43,16 +43,20 @@ const LayOut = () => {
                     {/* auth routes */}
                     <Route path='/login' element={<Login/>}></Route>
                     <Route path='/signup' element={<Signup />}></Route>
+                    <Route path='/forgot-password' element={<ForgetPassword />}></Route>
+                    <Route path='/reset-password/:token' element={<ResetPassword />}></Route>
+
+
 
                     {/* feed layout routes */}
                     <Route element={<Feed />}>
                         <Route path='/' element={<Home />}></Route>
                         <Route path='/profile/:id' element={<Profile />}></Route>
                         <Route path='/generateDeck' element={<GenerateDeck />}></Route>
+                        <Route path='/deck/:deckId' element={<DeckViewer />} />
 
                     </Route>
                     {/* Deck viewer (no layout, full page) */}
-                    <Route path='/deck/:deckId' element={<DeckViewer />} />
 
                 </Routes>
             </Router>

@@ -7,6 +7,7 @@ const cors = require("cors");
 
 
 const app = express();
+app.use(express.json());
 const port = 5000;
 // var cors=require('cors')
 //url name api/auth hit

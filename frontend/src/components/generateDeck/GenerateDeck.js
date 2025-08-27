@@ -42,7 +42,9 @@ const GenerateDeck = () => {
                 setGeneratedCards([]);
                 console.error("Failed to generate deck:", data.message || data);
             } else {
-                console.log("Deck generated:", data);
+                // console.log("Deck generated:", data);
+                console.log("Deck generated:");
+
                 setGeneratedCards(data.flashcards);
                 // optionally update your decks state to include new deck
             }
@@ -75,7 +77,9 @@ const GenerateDeck = () => {
                 console.error("Failed to save deck:", savedDeck.message || savedDeck);
             }
             else {
-                console.log("Deck saved successfully:", savedDeck);
+                // console.log("Deck saved successfully:", savedDeck);
+                console.log("Deck saved successfully:");
+
                 // Optionally navigate to deck viewer:
                 navigate(`/deck/${savedDeck.deck._id}`);
             }

@@ -60,7 +60,7 @@ const Content = () => {
                     <Deck title={deck.title} key={deck._id} id={deck._id} onDelete={handleDelete} />
                 ))//implicit return ()
             ) : (
-                <p>Loading...</p>
+                <p className='text'>No Flashcards</p>
             )}
   
         </div>

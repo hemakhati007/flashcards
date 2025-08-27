@@ -20,6 +20,16 @@ const UserSchema = new Schema(
             type: String,
             required: true
         },//an array of objectid of deck
+
+        // 👇 add these for reset password
+        resetPasswordToken: {
+            type: String,
+            default: null
+        },
+        resetPasswordExpires: {
+            type: Date,
+            default: null
+        },
         decks: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Deck'  // <-- this links user to their decks

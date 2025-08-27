@@ -1,5 +1,5 @@
- 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 
 import './nav.css';
 
@@ -7,10 +7,18 @@ import './nav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser } from '@fortawesome/free-solid-svg-icons';  // <-- import icons
 
+
+
+
 //componnet
-import Darkmood from '../DarkMoode/Darkmoode';
+import Logout from '../logout/Logout';
 
 const Nav = () => {
+    // const navigate = useNavigate();
+    // const handleClick = (e) => {
+    //     e.preventDefault();
+    //     navigate(0); // 🔄 re-runs the route & all useEffects
+    // };
     return (
         <nav>
             <div className="nav-container">
@@ -35,7 +43,8 @@ const Nav = () => {
                     <Link to='/'>
                         <FontAwesomeIcon icon={faHome} size='lg' />{/* // xs, sm, lg, 2x, 3x, 4x, etc. */}
                     </Link>
-                    <Darkmood/>
+                    {/* <Darkmood/> */}
+                    <Logout/>
                     <Link to='/profile/id '>
                         <FontAwesomeIcon icon={faUser} size='lg' />
                     </Link>

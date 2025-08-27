@@ -38,6 +38,8 @@ const { saveDeck } = require('../controllers/saveDeck');
 const { updateFlashcardAnswer } = require('../controllers/updateFlashAnswer');
 const { getDeckAccuracy } = require('../controllers/getDeckAccuracy');
 const { uploadProfileImage } = require('../controllers/uploadController');
+const { logoutUser } = require('../controllers/logout'); 
+
 
 // ---------------- ROUTES ---------------- //
 
@@ -62,6 +64,9 @@ router.get('/deck/:deckId/accuracy', fetchuser, getDeckAccuracy);
 
 // Upload route (controller handles logic)
 router.post("/upload", fetchuser, upload.single("image"), uploadProfileImage);
+//logout
+router.post("/logout", logoutUser);
+//forget password
 
 
 module.exports = router;

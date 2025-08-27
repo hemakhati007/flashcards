@@ -31,7 +31,9 @@ Topic: "${prompt}"`,
         });
 
         const rawText = cohereResponse.text.trim();
-        console.log("🟡 Raw Cohere Output:\n", rawText);
+        // console.log("🟡 Raw Cohere Output:\n", rawText);
+        console.log("🟡 Raw Cohere Output:\n");
+
         
 
         let cleaned = rawText
@@ -45,7 +47,9 @@ Topic: "${prompt}"`,
         try {
             // ✅ Try strict JSON parsing first
             flashcardsData = JSON.parse(cleaned);
-            console.log("✅ Parsed JSON flashcards:", flashcardsData);
+            // console.log("✅ Parsed JSON flashcards:", flashcardsData);
+            console.log("✅ Parsed JSON flashcards:");
+
 
              
         } catch (err) {

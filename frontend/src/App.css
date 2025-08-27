@@ -81,6 +81,7 @@ body {
 
 
 .container{
+  display: flex;
   overflow-y:auto;/*scrollable*/
     margin: 10px;
 }

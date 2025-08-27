@@ -50,3 +50,9 @@
     background-color: #f46f6f;
     /* blue */
 }
+
+.decks-container .text {
+    color: var(--text-color2);
+
+    background: var(--color-bg);
+}
