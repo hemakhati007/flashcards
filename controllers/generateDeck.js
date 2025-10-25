@@ -18,7 +18,7 @@ const generateDeck = async(req, res) => {
       
         // 1. Call Cohere API to generate flashcards
         const cohereResponse = await cohere.chat({
-            model: 'command-r',
+            model: 'command-a-03-2025',
             message: `You are a helpful assistant. Please return exactly "${count}" flashcards as a valid JSON array. Each flashcard should have a "question" and an "answer". The output must be strictly in this format:
 
 [
