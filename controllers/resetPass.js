@@ -1,9 +1,9 @@
+require('dotenv').config();
 const User = require("../Models/User");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 
 
-const JWT_SECRET = "iamagood$girl";//need to be in differnet file 
 
 
 

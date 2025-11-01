@@ -2,7 +2,7 @@
 //1.creating new user
 //2.login
 //3.logined user
-
+require('dotenv').config();
 
 const { validateEmailDomain, sendNotificationEmail } = require("../utils/emailService.js");
 const { requestPasswordReset } = require('../controllers/passController')
