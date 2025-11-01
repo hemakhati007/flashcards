@@ -1,8 +1,8 @@
 //fetch user
 //autheticate the token in req
- 
+require('dotenv').config();
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "iamagood$girl";
+
 
 
 const fetchuser = (req, res, next) => {
@@ -19,9 +19,9 @@ const fetchuser = (req, res, next) => {
         return res.status(401).send({ error: "please authenticate using a valid token" })
     }
     try {
-        const data = jwt.verify(token, JWT_SECRET);
+        const data = jwt.verify(token, process.env.JWT_SECRET);
         req.user = data.user;
-        console.log("yessssssssssssss");
+        // console.log("yessssssssssssss");
         next();//next() is a function that passes control to the next middleware or route handler in the stack.
     }
     catch (error) {

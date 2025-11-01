@@ -20,8 +20,8 @@ const User = require("../Models/User");
 //dealing with user creation and validation(user data)
 //for having seesions
 const jwt = require("jsonwebtoken");
-//create you signature --a secret
-const JWT_SECRET = "iamagood$girl";//need to be in differnet file 
+
+   
 
 // 1.creating user/registration
 //no login required //creating a user or adding
@@ -85,7 +85,7 @@ router.post(
                     id: user.id,
                 }
             };
-            const authtoken = jwt.sign(data, JWT_SECRET);
+            const authtoken = jwt.sign(data, process.env.JWT_SECRET);
 
             // Set the token in an HTTP-only cookie
             res.cookie("token", authtoken, {
@@ -131,7 +131,7 @@ router.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        console.log("Backend received:", req.body);
+        // console.log("Backend received:", req.body);
 
         //varification email and password
         const { email, password } = req.body;
@@ -153,7 +153,7 @@ router.post(
                 },
             };
 
-            const authtoken = jwt.sign(payload, JWT_SECRET);
+            const authtoken = jwt.sign(payload, process.env.JWT_SECRET);
             res.cookie("token", authtoken, {
                 httpOnly: true,
                 // secure: true,
