@@ -1,6 +1,6 @@
 //to get user info
-const User = require('../Models/User');
-const Deck = require("../Models/Deck");//to get Deck info
+const User = require('../user.model.js');
+const Deck = require("../../decks/deck.model.js");//to get Deck info
 
 
 const getUserProfile = async (req, res) => {

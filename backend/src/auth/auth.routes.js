@@ -2,10 +2,10 @@
 //1.creating new user
 //2.login
 //3.logined user
-require('dotenv').config();
+
 
 const { validateEmailDomain, sendNotificationEmail } = require("../utils/emailService.js");
-const { requestPasswordReset } = require('../controllers/passController')
+const { requestPasswordReset } = require('./controllers/reqPassReset.controller.js')
 
 
 
@@ -16,7 +16,7 @@ const { body, validationResult } = require("express-validator");
 //validationResult is to gather the result of validation and handle any error
 
 const bcrypt = require('bcryptjs');//hashing the password
-const User = require("../Models/User");
+const User = require("../users/user.model.js");
 //dealing with user creation and validation(user data)
 //for having seesions
 const jwt = require("jsonwebtoken");
@@ -138,13 +138,13 @@ router.post(
         try {
             let user = await User.findOne({ email });
             if (!user) {
-                return res.status(400).json({ errors: "please try login with correct credentials" });
+                return res.status(400).json({ success: false, errors: "please try login with correct credentials" });
             }
 
             const passwordCompare = await bcrypt.compare(password, user.password);
             if (!passwordCompare) {
                 console.log('login with correct credemntianls');
-                return res.status(400).json({ success, error: "please try to login with correct credentials" });
+                return res.status(400).json({ success: false , error: "please try to login with correct credentials" });
             }
             //for seesion creation
             const payload = {
@@ -198,7 +198,7 @@ router.post(
 
 router.post("/forget-password", requestPasswordReset);
 
-const { resetPassword }=require('../controllers/resetPass.js')
+const { resetPassword }=require('./controllers/passReset.controller.js')
 router.post("/reset-password", resetPassword);
 
 // Using POST is okay here since you're not passing any data in the body and want to keep it protected behind middleware.

@@ -1,7 +1,7 @@
 
-const Flashcard = require('../Models/Flashcard');
-const Deck = require('../Models/Deck');
-const User = require('../Models/User');
+const Deck = require("../deck.model.js");
+const Flashcard = require("../../flashcards/flashcard.model.js");
+const User = require('../../users/user.model.js');
 
 
 const saveDeck = async (req, res) => {

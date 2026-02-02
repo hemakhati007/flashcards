@@ -1,6 +1,6 @@
 
 
-const User = require("../Models/User");
+const User = require("../user.model.js");
 
 // Upload Profile Image Controller
 const uploadProfileImage = async (req, res) => {
@@ -15,8 +15,9 @@ const uploadProfileImage = async (req, res) => {
         // Update user profile with image path
         const user = await User.findByIdAndUpdate(
             userId,
-            { image: imageUrl }
-        );
+            { image: imageUrl },
+            { new: true }   // 👈 VERY IMPORTANT
+        ).select("-password");
 
         res.json({ success: true, user });
     } catch (err) {

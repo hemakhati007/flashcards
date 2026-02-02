@@ -1,7 +1,9 @@
 
-const Deck = require('../Models/Deck');
-const Flashcard = require('../Models/Flashcard');
-const User = require('../Models/User');
+const Deck = require("../deck.model.js");
+const Flashcard = require("../../flashcards/flashcard.model.js");
+
+const User = require('../../users/user.model.js');
+
 
 
 
@@ -9,7 +11,7 @@ const deleteDeck = async (req, res) => {
     try {
         const deckId = req.params.deckId;
         const userId = req.user.id;
-       
+
         // 1. Find deck
         const deck = await Deck.findById(deckId);
         if (!deck) return res.status(404).json({ error: 'Deck not found' });
@@ -18,10 +20,10 @@ const deleteDeck = async (req, res) => {
         console.log('deck.user:', deck.user.toString());
 
         // 2. Check ownership
-        if (!deck.user||deck.user.toString() !== userId) {
+        if (!deck.user || deck.user.toString() !== userId) {
             return res.status(403).json({ error: 'Access denied' });
         }
-       
+
         // 3. Delete all flashcards in that deck
         await Flashcard.deleteMany({ deck: deckId });
 
@@ -34,12 +36,12 @@ const deleteDeck = async (req, res) => {
         await Deck.findByIdAndDelete(deckId);
 
         res.json({ success: true, message: 'Deck deleted successfully' });
-        
+
     }
     catch (err) {
         console.error('Delete Deck Error:', err);
         res.status(500).json({ error: 'Server error' });
-    
+
     }
 };
-module.exports ={ deleteDeck};
+module.exports = { deleteDeck };

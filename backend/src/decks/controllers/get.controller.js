@@ -1,5 +1,6 @@
-const Deck = require("../Models/Deck");
-const Flashcard = require("../Models/Flashcard");
+const Deck = require("../deck.model.js");
+const Flashcard = require("../../flashcards/flashcard.model.js");
+
 console.log("enterd");
 const getDeck = async (req, res) => {
     

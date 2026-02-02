@@ -1,21 +1,21 @@
 
-const Deck = require('../Models/Deck');
-const Flashcard = require('../Models/Flashcard');
-require('dotenv').config(); // at the top
+const Deck = require("../deck.model.js");
+const Flashcard = require("../../flashcards/flashcard.model.js");
+
 
 const { CohereClient } = require("cohere-ai");
 const cohere = new CohereClient({
-    token: process.env.COHERE_API_KEY,
+    token: process.env.CO_API_KEY,
 });
 
- 
 
-const generateDeck = async(req, res) => {
-    
-    const { title, prompt,count } = req.body;
+
+const generateDeck = async (req, res) => {
+
+    const { title, prompt, count } = req.body;
     const userId = req.user.id;
     try {
-      
+
         // 1. Call Cohere API to generate flashcards
         const cohereResponse = await cohere.chat({
             model: 'command-a-03-2025',
@@ -34,7 +34,7 @@ Topic: "${prompt}"`,
         // console.log("🟡 Raw Cohere Output:\n", rawText);
         console.log("🟡 Raw Cohere Output:\n");
 
-        
+
 
         let cleaned = rawText
             // Remove markdown code fences
@@ -51,7 +51,7 @@ Topic: "${prompt}"`,
             console.log("✅ Parsed JSON flashcards:");
 
 
-             
+
         } catch (err) {
             console.warn("⚠️ JSON.parse failed. Trying fallback regex.");
 
@@ -65,7 +65,7 @@ Topic: "${prompt}"`,
                     return { question, answer };
                 })
                 .filter((card) => card.question && card.answer);
-            
+
             if (flashcardsData.length === 0) {
                 return res.status(500).json({
                     success: false,
@@ -75,21 +75,21 @@ Topic: "${prompt}"`,
         }
 
 
-        
+
 
         // 3. Return the flashcards
         res.status(201).json({
             success: true,
             flashcards: flashcardsData,
         });
- 
+
     }
     catch (err) {
         console.error('Deck Generation Error:', err);
         res.status(500).json({ success: false, error: 'Server error' });
-        
+
     }
 
 }
 
-module.exports ={ generateDeck};
+module.exports = { generateDeck };

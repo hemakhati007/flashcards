@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon index.js",
-    "client": "npm start --prefix frontend",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "server": "nodemon src/index.js",
+    "client": "cd ../frontend && npm start",
     "both": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
